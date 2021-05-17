@@ -27,6 +27,12 @@ RSpec.describe "Articles", type: :request do
           id: 1, title: 'Article 1', minutes_to_read: 10, author: 'author', content: "Content 1\nparagraph 1" 
         })
       end
+
+      it 'sets the session to two pageviews remaining' do
+        get "/articles/#{Article.first.id}"
+  
+        expect(session[:pageviews_remaining]).to eq(2)
+      end
     end
 
     context 'with two pageviews' do
@@ -37,6 +43,13 @@ RSpec.describe "Articles", type: :request do
         expect(response.body).to include_json({ 
           id: 1, title: 'Article 1', minutes_to_read: 10, author: 'author', content: "Content 1\nparagraph 1" 
         })
+      end
+
+      it 'sets the session to one pageview remaining' do
+        get "/articles/#{Article.first.id}"
+        get "/articles/#{Article.first.id}"
+  
+        expect(session[:pageviews_remaining]).to eq(1)
       end
     end
 
@@ -57,6 +70,14 @@ RSpec.describe "Articles", type: :request do
         get "/articles/#{Article.first.id}"
 
         expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'sets the session to no pageviews remaining' do
+        get "/articles/#{Article.first.id}"
+        get "/articles/#{Article.first.id}"
+        get "/articles/#{Article.first.id}"
+  
+        expect(session[:pageviews_remaining]).to eq(0)
       end
     end
   end
