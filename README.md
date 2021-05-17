@@ -1,4 +1,4 @@
-# Lab Name
+# Cookies and Sessions Lab
 
 ## Learning Goals
 
@@ -54,5 +54,4 @@ When a user makes a `GET` request to `/articles/:id`, the following should happe
 
 ## Resources
 
-- [link 1](example.com)
-- [link 2](example.com)
+- [Rails - Accessing the Session](https://guides.rubyonrails.org/v4.1.4/action_controller_overview.html#accessing-the-session)
