@@ -47,6 +47,7 @@ RSpec.describe "Articles", type: :request do
 
       it 'sets the session to one pageview remaining' do
         get "/articles/#{Article.first.id}"
+        get "/articles/#{Article.first.id}"
   
         expect(session[:pageviews_remaining]).to eq(1)
       end
@@ -72,6 +73,8 @@ RSpec.describe "Articles", type: :request do
       end
 
       it 'sets the session to no pageviews remaining' do
+        get "/articles/#{Article.first.id}"
+        get "/articles/#{Article.first.id}"
         get "/articles/#{Article.first.id}"
   
         expect(session[:pageviews_remaining]).to eq(0)
