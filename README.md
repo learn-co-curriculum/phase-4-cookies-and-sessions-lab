@@ -43,13 +43,13 @@ the paywall.
 When a user makes a `GET` request to `/articles/:id`, the following should happen:
 
 - If this is the first request this user has made, set
-  `sessions[:pageviews_remaining]` to an initial value of 3. _Hint: consider
+  `session[:pageviews_remaining]` to an initial value of 3. _Hint: consider
   using `||=` to set this initial value_
 - For every request to `/articles/:id`, decrement the value of
-  `sessions[:pageviews_remaining]` by 1.
-- If `sessions[:pageviews_remaining]` has a value greater than 0, render a JSON
+  `session[:pageviews_remaining]` by 1.
+- If `session[:pageviews_remaining]` has a value greater than 0, render a JSON
   response with the article data.
-- If `sessions[:pageviews_remaining]` as a value of 0 or less, render a JSON
+- If `session[:pageviews_remaining]` as a value of 0 or less, render a JSON
   response including an error message, and a status code of 401 unauthorized.
 
 ## Resources
