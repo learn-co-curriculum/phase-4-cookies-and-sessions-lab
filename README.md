@@ -12,24 +12,24 @@ hash to keep track of how many page views a user has made.
 There is some starter code in place for a Rails API backend and a React frontend.
 To get set up, run:
 
-```sh
-bundle install
-rails db:migrate db:seed
-npm install --prefix client
+```console
+$ bundle install
+$ rails db:migrate db:seed
+$ npm install --prefix client
 ```
 
 You can work on this lab by running the tests with `learn test`. It will also be
 helpful to see what's happening during the request/response cycle by running the
 app in the browser. You can run the Rails server with:
 
-```sh
-rails s
+```console
+$ rails s
 ```
 
 And you can run React in another terminal with:
 
-```sh
-npm start --prefix client
+```console
+$ npm start --prefix client
 ```
 
 You don't have to make any changes to the React code to get this lab working.
