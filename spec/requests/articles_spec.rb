@@ -28,10 +28,10 @@ RSpec.describe "Articles", type: :request do
         })
       end
 
-      it 'sets the session to two pageviews remaining' do
+      it 'uses the session to keep track of the number of page views' do
         get "/articles/#{Article.first.id}"
   
-        expect(session[:pageviews_remaining]).to eq(2)
+        expect(session[:page_views]).to eq(1)
       end
     end
 
@@ -45,11 +45,11 @@ RSpec.describe "Articles", type: :request do
         })
       end
 
-      it 'sets the session to one pageview remaining' do
+      it 'uses the session to keep track of the number of page views' do
         get "/articles/#{Article.first.id}"
         get "/articles/#{Article.first.id}"
   
-        expect(session[:pageviews_remaining]).to eq(1)
+        expect(session[:page_views]).to eq(2)
       end
     end
 
@@ -72,12 +72,12 @@ RSpec.describe "Articles", type: :request do
         expect(response).to have_http_status(:unauthorized)
       end
 
-      it 'sets the session to no pageviews remaining' do
+      it 'uses the session to keep track of the number of page views' do
         get "/articles/#{Article.first.id}"
         get "/articles/#{Article.first.id}"
         get "/articles/#{Article.first.id}"
   
-        expect(session[:pageviews_remaining]).to eq(0)
+        expect(session[:page_views]).to eq(3)
       end
     end
   end
