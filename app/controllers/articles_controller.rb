@@ -7,10 +7,10 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    session[:pageviews_remaining] ||= 3
-    session[:pageviews_remaining] -= 1
+    session[:page_views] ||= 0
+    session[:page_views] += 1
     
-    if session[:pageviews_remaining] > 0
+    if session[:page_views] < 3
       article = Article.find(params[:id])
       render json: article
     else
